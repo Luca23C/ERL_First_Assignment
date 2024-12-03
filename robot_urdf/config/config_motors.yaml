@@ -1,0 +1,19 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 30
+    use_sim_time: true
+
+    camera_joint_z_axis_controller:
+      type: forward_command_controller/ForwardCommandController
+
+
+camera_joint_z_axis_controller:
+  ros__parameters:
+    joints:
+      - camera_joint_z_axis
+    interface_name: position
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
