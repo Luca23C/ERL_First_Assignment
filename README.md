@@ -1,7 +1,7 @@
 # First assignment of Experimental Robot Laboratory   
 This assignment works with ROS2 foxy distribution.   
 There are two main package: `robot_urdf` and `ros2_aruco`.   
----
+
 ## robot_urdf package
 The environment for the simulation is in the **worlds** folder, where it's possible fo find a file called *aruco.world* in which is specified the displacement of the aruco markers in the environment.   
 Inside the **config** folder the file called *config_motors.yaml* contain the information related to the joint and the controller manager of the camera.
