@@ -34,5 +34,9 @@ b) By controlling the rotation of the camera:
 ros2 run robot_urdf control_camera
 ```  
 
-Lastly, in a fourth terminal you can check the status of the operation. When the robot will publish all the markers on the custom topic, it will be publish on the topic called `/status` that the operation was done.   
+Lastly, in a fourth terminal you can check the status of the operation.   
+```bash
+ros2 topic echo /status
+```   
+When the robot will publish all the markers on the custom topic, it will be publish on the topic called `/status` that the operation was done.   
 Additionally in the simulation it's possibly to see that the robot stop its movement.
