@@ -6,7 +6,6 @@ There are two main package: `robot_urdf` and `ros2_aruco`.
 The environment for the simulation is in the **worlds** folder, where it's possible fo find a file called *aruco.world* in which is specified the displacement of the aruco markers in the environment.   
 Inside the **config** folder the file called *config_motors.yaml* contain the information related to the joint and the controller manager of the camera.
 Finally within the **urdf** folder there is the file *robot4.xacro* in which there are the parameters of the camera.
----
 
 ## How to run the simulation
 
