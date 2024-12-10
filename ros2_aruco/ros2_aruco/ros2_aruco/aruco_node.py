@@ -246,9 +246,11 @@ class ArucoNode(rclpy.node.Node):
                 cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
                 sum_x = 0
                 sum_y = 0
+                # Get information about the coordinate of the marker
                 for i in range(len(self.x_coords)):
                     sum_x = sum_x + self.x_coords[i]
                     sum_y = sum_y + self.y_coords[i]
+                # Coordinate of the center of the marker
                 x_center = round(sum_x/4)
                 y_center = round(sum_y/4)
                 center_array = np.array([x_center, y_center])
@@ -261,6 +263,7 @@ class ArucoNode(rclpy.node.Node):
                     self.count_list += 1
                     self.send_img_topic = True
                 
+                # When all marker are published
                 if self.count_list == len(self.marker_list):
                     self.start_pub_image = False
                     status = String()
