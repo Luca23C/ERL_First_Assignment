@@ -1,6 +1,11 @@
 # First assignment of Experimental Robot Laboratory   
-This assignment works with ROS2 foxy distribution.   
-There are two main package: `robot_urdf` and `ros2_aruco`.   
+This assignment works with ROS2 foxy distribution.  
+There are two main package: `robot_urdf` and `ros2_aruco`.  
+
+## Flowchart
+For this project, it was choosen the **flowchart rapresentation** for showing each process:
+
+<img src=https://github.com/user-attachments/assets/434a13dc-3d95-4655-9408-053bbb640b52>
 
 ## robot_urdf package
 The environment for the simulation is in the **worlds** folder, where it's possible fo find a file called *aruco.world* in which is specified the displacement of the aruco markers in the environment.   
