@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'aruco_node = ros2_aruco.aruco_node:main',
-            'aruco_generate_marker = ros2_aruco.aruco_generate_marker:main'
+            'aruco_generate_marker = ros2_aruco.aruco_generate_marker:main',
+            'sphere_detection = ros2_aruco.sphere_detection:main'
         ],
     },
 )
