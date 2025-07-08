@@ -16,6 +16,7 @@ class SphereNode(rclpy.node.Node):
         super().__init__('sphere_detection')
 
         self.color_list = ['blue', 'red', 'black', 'green', 'yellow']
+        self.counter = 0   # useful for counting the color in the list
 
         # Color mask definition
         # Red color
@@ -53,6 +54,7 @@ class SphereNode(rclpy.node.Node):
         # Publisher
         self.publisher_image_on_topic = self.create_publisher(Image, '/output/image/rect', 10)
         self.timer = self.create_timer(0.5, self.img_pub_callback)
+        self.publisher_status = self.create_publisher(String, '/status', 10)
 
         # Camera parameters
         self.info_msg = None
@@ -109,15 +111,24 @@ class SphereNode(rclpy.node.Node):
         black_mask = cv2.dilate(mask_black, kernel)
         yellow_mask = cv2.dilate(mask_yellow, kernel)
 
-        mask_list = [red_mask, green_mask, blue_mask, black_mask, yellow_mask]
+        mask_list = [red_mask, green_mask, blue_mask, black_mask, yellow_mask] 
+        mask_list_color = ['red', 'green', 'blue', 'black', 'yellow']
 
         # Find contourns
         for i in range(len(mask_list)):
             mask = mask_list[i]
             contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             if len(contours) != 0:
+                mask_idx = i
                 break
-
+        
+        # Check counter color list
+        if self.counter >= len(self.color_list):
+            status = String()
+            status.data = 'Done'
+            self.publisher_status.publish(status)
+            self.counter = 0
+        
         # Draw rect
         for contour in contours:
             area = cv2.contourArea(contour)
@@ -125,7 +136,12 @@ class SphereNode(rclpy.node.Node):
                 x, y, w, h = cv2.boundingRect(contour)
                 self.image_to_pub_on_topic = cv2.rectangle(cv_image.copy(), (x, y), (x + w, y + h), (0, 0, 255), 2)
                 self.get_logger().info('Object found')
-                self.send_img_topic = True
+
+                color = self.color_list[self.counter]
+                compare_color = mask_list_color[mask_idx]
+                if color == compare_color:
+                    self.counter = self.counter + 1
+                    self.send_img_topic = True
 
 
     def img_pub_callback(self):
