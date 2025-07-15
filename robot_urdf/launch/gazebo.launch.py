@@ -35,6 +35,12 @@ def generate_launch_description():
         executable='spawner.py',
         arguments=['camera_joint_z_axis_controller'],
 	)
+
+    box_controller = Node(
+        package='controller_manager',
+        executable='spawner.py',
+        arguments=['box_joint_z_axis_controller'],
+    )
    
 
     # GAZEBO_MODEL_PATH has to be correctly set for Gazebo to be able to find the model
@@ -49,6 +55,7 @@ def generate_launch_description():
         joint_state_publisher_node,
         spawn_entity,
         camera_controller,
+        box_controller,
         ExecuteProcess(
             cmd=['gazebo', '--verbose', default_world_path, '-s', 'libgazebo_ros_factory.so'],
             output='screen'),

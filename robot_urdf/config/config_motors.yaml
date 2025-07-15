@@ -6,11 +6,25 @@ controller_manager:
     camera_joint_z_axis_controller:
       type: forward_command_controller/ForwardCommandController
 
+    box_joint_z_axis_controller:
+      type: forward_command_controller/ForwardCommandController
+
 
 camera_joint_z_axis_controller:
   ros__parameters:
     joints:
       - camera_joint_z_axis
+    interface_name: position
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+
+box_joint_z_axis_controller:
+  ros__parameters:
+    joints:
+      - box_joint_z_axis
     interface_name: position
     command_interfaces:
       - position

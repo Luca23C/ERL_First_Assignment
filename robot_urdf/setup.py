@@ -21,7 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
         	'control_camera = robot_urdf.control_camera:main',
-            	'control_robot_vel = robot_urdf.control_robot_vel:main'
+            'control_robot_vel = robot_urdf.control_robot_vel:main'
         ],
     },
 )
